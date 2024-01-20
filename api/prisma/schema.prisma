@@ -1,0 +1,50 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+enum Type {
+  FILE
+  FOLDER
+}
+
+model User {
+  id        String    @id @default(cuid()) @map("_id")
+  name      String
+  email     String    @unique
+  profile   String
+  storages  Storage[]
+  tokens    Token[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Storage {
+  id        String    @id @default(cuid()) @map("_id")
+  name      String
+  type      Type      @default(FILE)
+  path      String
+  parentId  String?
+  parent    Storage?  @relation("ChildToParent", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  children  Storage[] @relation("ChildToParent")
+  ownerId   String
+  owner     User      @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Token {
+  id        String   @id @default(cuid()) @map("_id")
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
