@@ -25,3 +25,5 @@ you need is an email, no password required.
 - **Enhanced Error Messaging**: I am working on improving error messages for better user guidance and troubleshooting.
 - **Folder Uploads**: I plan to expand the upload functionality to include folder drops for more convenience.
 - **Improved User Interface**: I am committed to enhancing the user dashboard for an even better user experience.
+
+![CloudVault Demo](https://job-infos.kyawzinthiha.com/Portfolio/cloud-vault-demo.gif)
