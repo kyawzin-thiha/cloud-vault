@@ -36,6 +36,17 @@ export class StorageRepository {
 		}
 	}
 
+	async getFolders(folders: string[]) : Promise<[{id: string, name: string}[] | null, ErrorDto]> {
+		try {
+			const folderData = await this.prisma.storage.findMany({
+				where: {id: {in: folders}},
+				select: {id: true, name: true}
+			})
+			return [folderData, null];
+		} catch{
+			return [null, { message: "Internal Server Error", status: 500 }];
+		}
+	}
 	async getAllChildren(owner: string, parent: string) : Promise<[StoragesDto, ErrorDto]> {
 		try {
 			const storages = await this.prisma.storage.findMany({
@@ -50,7 +61,6 @@ export class StorageRepository {
 
 	async create(name: string, folder: string, path: string, type: Type, owner: string) : Promise<[StorageDto, ErrorDto]> {
 		try {
-			console.log(name, folder);
 			const storageData: Prisma.StorageCreateInput = {
 				name,
 				path,
@@ -68,7 +78,6 @@ export class StorageRepository {
 
 			return [storage, null];
 		} catch(error) {
-			console.log(error);
 			return [null, { message: "Internal Server Error", status: 500 }];
 		}
 	}

@@ -25,8 +25,6 @@ export class MailService {
 
 			return null;
 		} catch (error) {
-			console.log(error);
-			console.log(error.response.body);
 			return { message: error.message, status: 500 };
 		}
 	}

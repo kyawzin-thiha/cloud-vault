@@ -39,7 +39,6 @@ export default function Page() {
 		const response = await login(email);
 		updateStatus({ loading: false, ...response });
 		toggleDialog();
-		console.log(status);
 		setEmail('');
 	};
 

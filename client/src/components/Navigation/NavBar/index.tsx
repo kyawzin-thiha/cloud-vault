@@ -125,7 +125,6 @@ const UploadFolder = ({ handleClose }: { handleClose: () => void }) => {
 			router.refresh();
 			handleClose();
 		}
-		console.log(response);
 	};
 
 	return (

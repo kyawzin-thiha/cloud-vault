@@ -35,7 +35,11 @@ export class StorageController {
 		const { id: user } = req.user;
 		return await this.storage.getChildrenStorages(user, id);
 	}
-
+	
+	@Post('get-names')
+	async getStorageNames(@Body() data: { folders: string[] }) {
+		return await this.storage.getStorageNames(data.folders);
+	}
 
 	@Post('create-folder')
 	async createFolder(@Body() data: { name: string, folder: string }, @Request() req: any) {

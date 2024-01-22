@@ -31,7 +31,6 @@ export class AWSService {
 			await this.s3Client.send(new PutObjectCommand(param));
 			return [`${this.configService.get("CLOUDFLARE_R2_PUBLIC_DOMAIN")}/${filename}`, null];
 		} catch (error) {
-			console.log(error)
 			return [null, { message: "Internal Server Error", status: 500 }];
 		}
 	}

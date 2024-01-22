@@ -30,7 +30,6 @@ export default async function AuthRootLayout({
 
 	 const response = await authenticate(token as string);
 
-	 console.log(response);
 	 if(response) {
 	 redirect('/');
 	 }

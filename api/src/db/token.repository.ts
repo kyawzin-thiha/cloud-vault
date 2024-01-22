@@ -33,7 +33,6 @@ export class TokenRepository {
 			}
 			return [token, null];
 		} catch(error) {
-			console.log(error);
 			return [null, { message: "Internal Server Error", status: 500 }];
 		}
 	}

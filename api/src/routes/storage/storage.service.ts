@@ -37,6 +37,16 @@ export class StorageService {
 		return storage;
 	}
 
+	async getStorageNames(folders: string[]) {
+		const [folderData, dbError] = await this.storage.getFolders(folders);
+
+		if (dbError) {
+			throw new HttpException(dbError.message, dbError.status);
+		}
+
+		return folderData;
+	}
+
 	async createFolder(user: string, name: string, folder: string) {
 		const [storage, dbError] = await this.storage.create(name, folder, "", "FOLDER", user);
 

@@ -5,10 +5,7 @@ import FileCard from '@/components/Cards/File';
 
 export default async function Home() {
   const { success, data } = await getAll();
-
-  console.log(data);
-
-
+  
   return (
     <main>
       <List>
