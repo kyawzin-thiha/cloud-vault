@@ -27,11 +27,12 @@ export class StorageRepository {
 	async getAll(owner: string) : Promise<[StoragesDto, ErrorDto]> {
 		try {
 			const storages = await this.prisma.storage.findMany({
-				where: {owner : {id: owner}, ownerId: null}
+				where: {owner : {id: owner}, parent: null}
 			})
 
 			return [storages, null];
 		}catch(error) {
+			console.log(error)
 			return [null, { message: "Internal Server Error", status: 500 }];
 		}
 	}
