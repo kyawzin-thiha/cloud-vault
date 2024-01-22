@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+
+body {
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+
+  main {
+    width: 100%;
+    height: auto;
+    min-height: calc(100vh - 70px);
+    padding: 15px 10px;
+    @media screen and (max-width: 768px) {
+      min-height: calc(100vh - 60px);
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

@@ -1,0 +1,16 @@
+.grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-rows: 180px;
+  gap: 1rem;
+  padding: 1rem;
+  justify-items: center;
+  align-items: center;
+
+  @media (max-width: 600px) {
+    padding: 0;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 10px;
+  }
+}
