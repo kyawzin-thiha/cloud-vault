@@ -21,6 +21,7 @@ export class UserController {
 			httpOnly: this.configService.get("NODE_ENV") === "production",
 			sameSite: 'none',
 			secure: this.configService.get("NODE_ENV") === "production",
+			domain: this.configService.get("NODE_ENV") === "production" ? this.configService.get("COOKIE_DOMAIN") : undefined,
 			maxAge: 1000 * 60 * 60 * 24,
 		});
 
@@ -45,6 +46,7 @@ export class UserController {
 			httpOnly: this.configService.get("NODE_ENV") === "production",
 			sameSite: 'none',
 			secure: this.configService.get("NODE_ENV") === "production",
+			domain: this.configService.get("NODE_ENV") === "production" ? this.configService.get("COOKIE_DOMAIN") : undefined,
 			maxAge: 1000 * 60 * 60 * 24,
 		});
 		return true;
