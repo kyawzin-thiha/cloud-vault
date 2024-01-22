@@ -53,12 +53,12 @@ export async function getAll() {
 
 		return {
 			success: response.ok,
-			data: response.ok ? await response.json() : null,
+			data: response.ok ? await response.json() : [],
 		};
 	} catch (error) {
 		return {
 			success: false,
-			data: null,
+			data: [],
 		};
 	}
 }
@@ -83,12 +83,12 @@ export async function getChildren(folder: string) {
 
 		return {
 			success: response.ok,
-			data: response.ok ? await response.json() : null,
+			data: response.ok ? await response.json() : [],
 		};
 	} catch (error) {
 		return {
 			success: false,
-			data: null,
+			data: [],
 		};
 	}
 }

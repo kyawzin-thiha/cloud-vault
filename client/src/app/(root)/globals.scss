@@ -23,9 +23,6 @@ body {
     width: 100%;
     height: auto;
     padding: 15px 10px;
-    @media screen and (max-width: 768px) {
-      min-height: calc(100vh - 60px);
-    }
   }
 }
 

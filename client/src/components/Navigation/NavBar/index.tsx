@@ -31,6 +31,7 @@ import Logo from '@/assets/svgs/logo.svg';
 import styles from './navbar.module.scss';
 import { createNewFolder } from '@/lib/storage/folder';
 import { uploadNewFile } from '@/lib/storage/file';
+import logout from '@/lib/user/logout';
 
 type User = {
 	id: string;
@@ -52,6 +53,8 @@ export default function NavBar({ user }: { user: User }) {
 
 
 const AvatarMenu = ({ user }: { user: User }) => {
+
+	const router = useRouter();
 	const [isOpen, setIsOpen] = useState(false);
 	const [type, setType] = useState<'file' | 'folder' | ''>('');
 
@@ -66,6 +69,14 @@ const AvatarMenu = ({ user }: { user: User }) => {
 
 	const handleDialog = () => {
 		setIsOpen(!isOpen);
+	};
+
+	const triggerLogout = async () => {
+		const response = await logout();
+		console.log(response);
+		if (response.success) {
+			router.replace('/login');
+		}
 	};
 
 	return (
@@ -93,7 +104,9 @@ const AvatarMenu = ({ user }: { user: User }) => {
 							</DialogTrigger>
 						</DropdownMenuItem>
 						<DropdownMenuSeparator />
-						<DropdownMenuItem>Log Out</DropdownMenuItem>
+						<a href={`${process.env.NEXT_PUBLIC_API_URL}/user/logout`}>
+							<DropdownMenuItem onClick={triggerLogout}>Log Out</DropdownMenuItem>
+						</a>
 					</DropdownMenuContent>
 				</DropdownMenu>
 				<DialogContent className="sm:max-w-[425px]">

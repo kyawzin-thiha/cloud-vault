@@ -41,15 +41,16 @@ export class UserController {
 	}
 
 	@Get("logout")
-	async logout(@Response({passthrough: true}) res: any) {
+	async logout(@Response() res: any) {
 		res.clearCookie("token",  {
 			httpOnly: this.configService.get("NODE_ENV") === "production",
 			sameSite: 'none',
 			secure: this.configService.get("NODE_ENV") === "production",
 			domain: this.configService.get("NODE_ENV") === "production" ? this.configService.get("COOKIE_DOMAIN") : undefined,
-			maxAge: 1000 * 60 * 60 * 24,
+			expires: new Date(0),
 		});
-		return true;
+
+		res.redirect(this.configService.get("CLIENT_URL"));
 	}
 
 	@Get("")
