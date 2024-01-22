@@ -27,7 +27,7 @@ export class StorageRepository {
 	async getAll(owner: string) : Promise<[StoragesDto, ErrorDto]> {
 		try {
 			const storages = await this.prisma.storage.findMany({
-				where: {owner : {id: owner}}
+				where: {owner : {id: owner}, ownerId: null}
 			})
 
 			return [storages, null];
